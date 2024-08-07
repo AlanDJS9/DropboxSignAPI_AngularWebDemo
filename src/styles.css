@@ -1,1 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+
+:root {
+  --dropbox-blue: #007ee5;
+  --dropbox-dark-blue: #0047ba;
+  --dropbox-light-grey: #f5f5f5;
+  --dropbox-grey: #757575;
+  --dropbox-white: #ffffff;
+}
+
+.mat-toolbar {
+  background: var(--dropbox-blue);
+  color: var(--dropbox-white);
+}
+
+.mat-tab-group .mat-tab-label {
+  color: var(--dropbox-grey);
+}
+
+.mat-tab-group .mat-tab-label-active {
+  color: var(--dropbox-dark-blue);
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

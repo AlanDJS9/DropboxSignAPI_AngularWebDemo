@@ -1,0 +1,83 @@
+<div class="container">
+  <div class="control-panel">
+    <form [formGroup]="form">
+      <div>
+        <label>Signer Name:</label>
+        <input formControlName="signerName" type="text">
+      </div>
+      <div>
+        <label>Signer Email:</label>
+        <input formControlName="signerEmail" type="email">
+      </div>
+      <div>
+        <label>Title:</label>
+        <input formControlName="title" type="text">
+      </div>
+      <div>
+        <label>Subject:</label>
+        <input formControlName="subject" type="text">
+      </div>
+      <div>
+        <label>Message:</label>
+        <textarea formControlName="message"></textarea>
+      </div>
+      <div>
+        <label for="enableSms">Enable SMS:</label>
+        <input formControlName="enableSms" id="enableSms" type="checkbox">
+      </div>
+      <div *ngIf="form.get('enableSms')?.value">
+        <label for="phoneNumber">Phone Number:</label>
+        <input formControlName="phoneNumber" id="phoneNumber" type="text">
+      </div>
+      <div>
+        <label>Click coordinates: X={{coordinates.x}}, Y={{coordinates.y}}, Page={{currentPage}}</label>
+      </div>
+      <div>
+        <label for="fieldType">Field Type:</label>
+        <select formControlName="fieldType" id="fieldType">
+          <option *ngFor="let type of fieldTypes" [value]="type">{{ type }}</option>
+        </select>
+      </div>
+      <div>
+        <label for="fieldWidth">Field Width:</label>
+        <input formControlName="fieldWidth" id="fieldWidth" type="text">
+      </div>
+      <div>
+        <label for="fieldHeight">Field Height:</label>
+        <input formControlName="fieldHeight" id="fieldHeight" type="text">
+      </div>
+      <div>
+        <label for="fieldPage">Page Number:</label>
+        <input formControlName="fieldPage" id="fieldPage" type="text">
+      </div>
+      <div>
+        <label for="fieldPlaceholder">Placeholder:</label>
+        <input formControlName="fieldPlaceholder" id="fieldPlaceholder" type="text">
+      </div>
+      <div>
+        <button mat-raised-button color="primary" type="button" (click)="addField()">Add Field</button>
+      </div>
+      <div>
+        <button mat-raised-button color="accent" type="button" (click)="sendSignatureRequest()">Send Request</button>
+      </div>
+    </form>
+    <div>
+      <input type="file" (change)="onFileSelected($event)" accept="application/pdf" />
+    </div>
+    <div *ngIf="submissionResult" class="submission-result">
+      <h3>Submission Result:</h3>
+      <pre>{{ submissionResult | json }}</pre>
+    </div>
+  </div>
+  <div class="pdf-display" *ngIf="pdfSrc">
+    <div class="pdf-viewer-container">
+      <pdf-viewer
+        [src]="pdfSrc"
+        [render-text]="true"
+        (after-load-complete)="onPdfLoaded($event)"
+        (page-rendered)="onPageRendered($event)"
+        (click)="onPdfClick($event)">
+      </pdf-viewer>
+    </div>
+  </div>
+</div>

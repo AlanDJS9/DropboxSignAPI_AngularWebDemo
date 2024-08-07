@@ -1,0 +1,49 @@
+<h1 mat-dialog-title>{{ action | titlecase }}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <!-- Fields for sendSignatureRequest, sendSignatureRequestWithTextTags, sendSimpleSignatureRequest -->
+    <mat-form-field *ngIf="action === 'sendSignatureRequest' || action === 'sendSignatureRequestWithTextTags' || action === 'sendSimpleSignatureRequest'">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title">
+    </mat-form-field>
+    <mat-form-field *ngIf="action === 'sendSignatureRequest' || action === 'sendSignatureRequestWithTextTags' || action === 'sendSimpleSignatureRequest'">
+      <mat-label>Subject</mat-label>
+      <input matInput formControlName="subject">
+    </mat-form-field>
+    <mat-form-field *ngIf="action === 'sendSignatureRequest' || action === 'sendSignatureRequestWithTextTags' || action === 'sendSimpleSignatureRequest'">
+      <mat-label>Message</mat-label>
+      <input matInput formControlName="message">
+    </mat-form-field>
+    <mat-form-field *ngIf="action === 'sendSignatureRequest' || action === 'sendSignatureRequestWithTextTags' || action === 'sendSimpleSignatureRequest'">
+      <mat-label>Signer Email</mat-label>
+      <input matInput formControlName="signerEmail1" type="email">
+    </mat-form-field>
+    <mat-checkbox *ngIf="action === 'sendSignatureRequest' || action === 'sendSignatureRequestWithTextTags' || action === 'sendSimpleSignatureRequest'" formControlName="enableSms">Enable SMS</mat-checkbox>
+    <mat-form-field *ngIf="action === 'sendSignatureRequest' || action === 'sendSignatureRequestWithTextTags' || action === 'sendSimpleSignatureRequest'">
+      <mat-label>Phone Number</mat-label>
+      <input matInput formControlName="phoneNumber" type="tel">
+    </mat-form-field>
+
+    <mat-checkbox *ngIf="action === 'sendSignatureRequest' || action === 'sendSignatureRequestWithTextTags' || action === 'sendSimpleSignatureRequest'" formControlName="useTextTags">Use Document with Text Tags</mat-checkbox>
+    <br>
+    <input type="file" (change)="onFileSelected($event)" *ngIf="action === 'sendSignatureRequest' || action === 'sendSignatureRequestWithTextTags' || action === 'sendSimpleSignatureRequest'">
+
+    <!-- Fields for updateSignatureRequest -->
+    <mat-form-field *ngIf="action === 'updateSignatureRequest'">
+      <mat-label>Signature Request ID</mat-label>
+      <input matInput formControlName="signatureRequestId">
+    </mat-form-field>
+    <mat-form-field *ngIf="action === 'updateSignatureRequest'">
+      <mat-label>Signature ID</mat-label>
+      <input matInput formControlName="signatureId">
+    </mat-form-field>
+    <mat-form-field *ngIf="action === 'updateSignatureRequest'">
+      <mat-label>Email Address</mat-label>
+      <input matInput formControlName="emailAddress" type="email">
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [disabled]="!form.valid" (click)="onSubmit()">Submit</button>
+</div>

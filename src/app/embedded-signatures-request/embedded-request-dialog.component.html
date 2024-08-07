@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>{{ action | titlecase }}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <div *ngIf="action === 'createEmbeddedSignatureRequest' || action === 'createEmbeddedSignatureRequestWithTemplate' || action === 'embeddedBulkSendWithTemplate'">
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name">
+      </mat-form-field>
+      <mat-form-field *ngIf="action !== 'createEmbeddedSignatureRequest'">
+        <mat-label>Template ID</mat-label>
+        <input matInput formControlName="templateId">
+      </mat-form-field>
+      <input type="file" (change)="onFileSelected($event)">
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [disabled]="!form.valid" (click)="onSubmit()">Submit</button>
+</div>

@@ -1,13 +1,23 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTabsModule } from '@angular/material/tabs';
+import { AccountRequestsComponent } from './account-requests/account-requests.component';
+import { SignatureRequestComponent } from './signature-request/signature-request.component';
+import { EmbeddedSignaturesRequestComponent } from './embedded-signatures-request/embedded-signatures-request.component';
+import { SignatureSimulatorComponent } from './signature-simulator/signature-simulator.component';
 
 @Component({
+  imports: [
+    MatToolbarModule,
+    MatTabsModule,
+    AccountRequestsComponent,
+    SignatureRequestComponent,
+    EmbeddedSignaturesRequestComponent,
+    SignatureSimulatorComponent
+  ],
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css'],
+  templateUrl: './app.component.html'
 })
-export class AppComponent {
-  title = 'dropbox-signature-app';
-}
+export class AppComponent { }
