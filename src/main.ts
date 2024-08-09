@@ -11,17 +11,18 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { appConfig } from './app/app.config';
 
-bootstrapApplication(AppComponent, {
+
+bootstrapApplication(AppComponent, {  // Bootstraps the Angular application with the root component 'AppComponent'
   providers: [
-    provideHttpClient(),
-    provideRouter([]),
-    importProvidersFrom(
-      BrowserAnimationsModule,
-      MatToolbarModule,
-      MatTabsModule,
-      MatFormFieldModule,
-      MatInputModule,
-      MatButtonModule
+    provideHttpClient(),  // Provide HTTP client service for making HTTP requests throughout the application
+    provideRouter([]),  // Provide routing capabilities; currently, an empty array indicates no routes defined here
+    importProvidersFrom(  // Import providers from various Angular modules needed for the application
+      BrowserAnimationsModule,  // Enable animations in the application
+      MatToolbarModule,  // Import Material Toolbar module for using toolbar components
+      MatTabsModule,  // Import Material Tabs module for using tabbed navigation components
+      MatFormFieldModule,  // Import Material Form Field module for using form fields
+      MatInputModule,  // Import Material Input module for using input fields
+      MatButtonModule  // Import Material Button module for using buttons
     )
   ]
-}).catch(err => console.error(err));
+}).catch(err => console.error(err));  // Catch and log any errors that occur during the bootstrapping process
